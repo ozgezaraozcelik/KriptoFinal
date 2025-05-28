@@ -34,9 +34,5 @@ gibi temel şifreleme işlemlerini gerçekleştirmeyi amaçlar.
 
 ---
 
-## 🚀 Başlangıç
+![image](https://github.com/user-attachments/assets/bb9f4a8b-f37e-45d9-a924-f8d649716204)
 
-### 1. Projeyi Kopyalayın
-```bash
-git clone https://github.com/kullaniciadi/KriptoFinal.git
-![image](https://github.com/user-attachments/assets/5a1c9291-0567-45d3-b1b5-38d4f1c67332)
