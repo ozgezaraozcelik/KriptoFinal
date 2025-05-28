@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "RSA Şifre Çözme";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">🔓 RSA Şifre Çözme Aracı</h2>
+    <p class="text-center text-muted mb-4">Şifrelenmiş metni ve özel anahtarı girerek çözümleme yapın.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-controller="Decrypt" asp-action="Index" method="post">
+                <div class="mb-3">
+                    <label for="encryptedText" class="form-label">Şifrelenmiş Metin (Base64):</label>
+                    <textarea class="form-control" id="encryptedText" name="encryptedText" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="privateKey" class="form-label">Özel Anahtar (Base64):</label>
+                    <textarea class="form-control" id="privateKey" name="privateKey" rows="4" required></textarea>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-warning">Şifreyi Çöz</button>
+                </div>
+            </form>
+
+            @if (ViewBag.DecryptedText != null)
+            {
+                <div class="mt-4">
+                    <label class="form-label">Çözülmüş Metin:</label>
+                    <textarea class="form-control" rows="4" readonly>@ViewBag.DecryptedText</textarea>
+                </div>
+            }
+        </div>
+    </div>
+</div>

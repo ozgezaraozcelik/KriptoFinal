@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "RSA Anahtar Üret";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">🔑 RSA Anahtar Üretme Aracı</h2>
+    <p class="text-center text-muted mb-4">RSA genel ve özel anahtar çiftinizi üretmek için butona tıklayın.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-controller="GenerateKey" asp-action="Index" method="post">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Anahtar Üret</button>
+                </div>
+            </form>
+
+            @if (ViewBag.PublicKey != null && ViewBag.PrivateKey != null)
+            {
+                <div class="mt-5">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <label class="form-label">🔒 Genel Anahtar (Public Key):</label>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard('publicKey')">📋</button>
+                    </div>
+                    <textarea id="publicKey" class="form-control" rows="5" readonly>@ViewBag.PublicKey</textarea>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <label class="form-label">🔐 Özel Anahtar (Private Key):</label>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard('privateKey')">📋</button>
+                    </div>
+                    <textarea id="privateKey" class="form-control" rows="5" readonly>@ViewBag.PrivateKey</textarea>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Kopyalama Fonksiyonu -->
+@section Scripts {
+    <script>
+        function copyToClipboard(elementId) {
+            const textArea = document.getElementById(elementId);
+            if (textArea) {
+                navigator.clipboard.writeText(textArea.value).then(function () {
+                    alert('Kopyalandı!');
+                }, function (err) {
+                    alert('Kopyalama başarısız oldu: ' + err);
+                });
+            }
+        }
+    </script>
+}

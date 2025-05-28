@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<!-- Başlangıç: Sayfa Başlığı -->
+<div class="container py-5">
+    <header class="text-center mb-5">
+        <h1 class="display-3 fw-bold text-gradient">🔐 Kriptografi Araçları Paneli</h1>
+        <p class="fs-5 text-muted">RSA ve SHA256 işlemlerinizi güvenli ve kolay şekilde gerçekleştirin.</p>
+    </header>
+
+    <!-- Başlangıç: Kart Grid Sistemi -->
+    <div class="row g-4">
+        <!-- RSA Anahtar Üret -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg h-100 bg-gradient-primary text-white">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h4 class="card-title mb-3">🔑 RSA Anahtar Üret</h4>
+                        <p class="card-text">Genel ve özel anahtar çifti üretin ve sisteminizde kullanın.</p>
+                    </div>
+                    <div class="text-end">
+                        <a asp-controller="GenerateKey" asp-action="Index" class="btn btn-outline-light">Git</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RSA Şifreleme -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg h-100 bg-gradient-success text-white">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h4 class="card-title mb-3">🛡️ RSA Şifreleme</h4>
+                        <p class="card-text">Verilerinizi güçlü RSA algoritmasıyla şifreleyin.</p>
+                    </div>
+                    <div class="text-end">
+                        <a asp-controller="Encrypt" asp-action="Index" class="btn btn-outline-light">Git</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RSA Şifre Çözme -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg h-100 bg-gradient-warning text-dark">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h4 class="card-title mb-3">🔓 RSA Şifre Çöz</h4>
+                        <p class="card-text">RSA ile şifrelenmiş verileri güvenli şekilde çözün.</p>
+                    </div>
+                    <div class="text-end">
+                        <a asp-controller="Decrypt" asp-action="Index" class="btn btn-outline-dark">Git</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SHA256 Hashleme -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg h-100 bg-gradient-dark text-white">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h4 class="card-title mb-3">📛 SHA256 Hashleme</h4>
+                        <p class="card-text">Metinleri SHA256 algoritmasıyla özetleyin.</p>
+                    </div>
+                    <div class="text-end">
+                        <a asp-controller="Sha256" asp-action="Index" class="btn btn-outline-light">Git</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bitiş: Kart Grid Sistemi -->
+</div>
+
+<!-- Özel CSS tanımları (sayfanın altına veya ayrı CSS dosyasına konabilir) -->
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #1d3557, #457b9d);
+    }
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #2a9d8f, #219653);
+    }
+    .bg-gradient-warning {
+        background: linear-gradient(135deg, #ffca3a, #f4a261);
+    }
+    .bg-gradient-dark {
+        background: linear-gradient(135deg, #2c3e50, #1c1c1c);
+    }
+    .text-gradient {
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>

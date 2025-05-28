@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "RSA Şifreleme";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">🛡️ RSA Şifreleme Aracı</h2>
+    <p class="text-center text-muted mb-4">Genel anahtarı kullanarak metni şifreleyin.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-controller="Encrypt" asp-action="Index" method="post">
+                <div class="mb-3">
+                    <label for="plainText" class="form-label">Şifrelenecek Metin:</label>
+                    <textarea class="form-control" id="plainText" name="plainText" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="publicKey" class="form-label">Genel Anahtar (Base64):</label>
+                    <textarea class="form-control" id="publicKey" name="publicKey" rows="4" required></textarea>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">RSA ile Şifrele</button>
+                </div>
+            </form>
+
+            @if (ViewBag.EncryptedText != null)
+            {
+                <div class="mt-4">
+                    <label class="form-label">Şifrelenmiş Veri (Base64):</label>
+                    <textarea class="form-control" rows="4" readonly>@ViewBag.EncryptedText</textarea>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Bu sayfa sadece metin şifreleme içerdiğinden ekstra JavaScript gerekli değildir. -->
+}

@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "SHA256 Hashleme";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">📛 SHA256 Hashleme Aracı</h2>
+    <p class="text-center text-muted mb-4">SHA256 ile metin veya dosya hashlemesi yapın.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-controller="Sha256" asp-action="Index" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Veri Türü:</label>
+                    <select class="form-select" name="dataType" id="dataType" onchange="toggleFields()">
+                        <option value="text">Metin</option>
+                        <option value="file">Dosya</option>
+                    </select>
+                </div>
+
+                <div class="mb-3" id="textInput">
+                    <label for="inputText" class="form-label">Metin:</label>
+                    <textarea class="form-control" id="inputText" name="inputText" rows="4" placeholder="Metni buraya yazın..."></textarea>
+                </div>
+
+                <div class="mb-3 d-none" id="fileInput">
+                    <label for="inputFile" class="form-label">Dosya:</label>
+                    <input type="file" class="form-control" id="inputFile" name="inputFile" />
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">SHA256 Hashle</button>
+                </div>
+            </form>
+
+            @if (ViewBag.HashResult != null)
+            {
+                <div class="mt-4">
+                    <label class="form-label">SHA256 Hash Sonucu:</label>
+                    <textarea class="form-control bg-light text-dark" rows="3" readonly>@ViewBag.HashResult</textarea>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function toggleFields() {
+            var type = document.getElementById("dataType").value;
+            document.getElementById("textInput").classList.toggle("d-none", type !== "text");
+            document.getElementById("fileInput").classList.toggle("d-none", type !== "file");
+        }
+    </script>
+}
+
+<style>
+    textarea::placeholder {
+        color: #999;
+        font-style: italic;
+    }
+</style>
