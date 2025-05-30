@@ -2,25 +2,95 @@
     ViewData["Title"] = "RSA Şifre Çözme";
 }
 
+<style>
+    /* Koyu arka plan ve neon kırmızı tema için form elemanları */
+    textarea.form-control {
+        background: rgba(0, 0, 0, 0.15);
+        color: #ffcccc;
+        border: 1.5px solid #ff0000;
+        border-radius: 6px;
+        box-shadow: 0 0 5px #ff0000aa inset;
+        font-family: 'Courier New', monospace;
+        transition: border-color 0.3s ease;
+    }
+
+        textarea.form-control:focus {
+            border-color: #ff4444;
+            box-shadow: 0 0 8px #ff4444 inset;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            outline: none;
+        }
+
+    label.form-label {
+        color: #ff4444;
+        font-weight: 600;
+        user-select: none;
+    }
+
+    /* Neon kırmızı buton stili */
+    .btn-neon-red {
+        background: transparent;
+        border: 2px solid #ff0000;
+        color: #ff0000;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #ff0000, 0 0 20px #ff4444, inset 0 0 10px #ff4444;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        user-select: none;
+        font-size: 1.1rem;
+    }
+
+        .btn-neon-red:hover,
+        .btn-neon-red:focus {
+            background: #ff0000;
+            color: #222;
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #ff6666, inset 0 0 20px #ff6666;
+            text-decoration: none;
+            outline: none;
+        }
+
+    /* Container stili */
+    .container {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        box-shadow: 0 0 20px #ff000033 inset;
+        padding: 30px;
+        color: #ffcccc;
+        margin-top: 40px;
+    }
+
+    /* Başlık ve açıklama */
+    h2 {
+        user-select: none;
+    }
+
+    p.text-muted {
+        user-select: none;
+    }
+</style>
+
 <div class="container py-5">
     <h2 class="text-center mb-4">🔓 RSA Şifre Çözme Aracı</h2>
-    <p class="text-center text-muted mb-4">Şifrelenmiş metni ve özel anahtarı girerek çözümleme yapın.</p>
+    <p class="text-center text-muted mb-4" style="color:#ff8888;">Özel anahtarınızı kullanarak şifrelenmiş veriyi çözün.</p>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form asp-controller="Decrypt" asp-action="Index" method="post">
                 <div class="mb-3">
                     <label for="encryptedText" class="form-label">Şifrelenmiş Metin (Base64):</label>
-                    <textarea class="form-control" id="encryptedText" name="encryptedText" rows="4" required></textarea>
+                    <textarea class="form-control" id="encryptedText" name="encryptedText" rows="4" required>@ViewBag.EncryptedTextInput</textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="privateKey" class="form-label">Özel Anahtar (Base64):</label>
-                    <textarea class="form-control" id="privateKey" name="privateKey" rows="4" required></textarea>
+                    <textarea class="form-control" id="privateKey" name="privateKey" rows="6" required>@ViewBag.PrivateKeyInput</textarea>
                 </div>
 
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-warning">Şifreyi Çöz</button>
+                    <button type="submit" class="btn-neon-red">RSA ile Şifre Çöz</button>
                 </div>
             </form>
 
@@ -28,7 +98,7 @@
             {
                 <div class="mt-4">
                     <label class="form-label">Çözülmüş Metin:</label>
-                    <textarea class="form-control" rows="4" readonly>@ViewBag.DecryptedText</textarea>
+                    <textarea class="form-control" rows="5" readonly>@ViewBag.DecryptedText</textarea>
                 </div>
             }
         </div>

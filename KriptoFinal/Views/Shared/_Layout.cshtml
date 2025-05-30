@@ -1,49 +1,215 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - KriptoFinal</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/KriptoFinal.styles.css" asp-append-version="true" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@ViewData["Title"] - KriptoFinal</title>
+
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/KriptoFinal.styles.css" asp-append-version="true" />
+
+  <style>
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+      color: #ffcccc;
+      background: black;
+      position: relative;
+    }
+
+    /* Matrix canvas background */
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Navbar transparent with no shadow or border */
+    .navbar {
+      background: rgba(0, 0, 0, 0.15) !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    .navbar-brand, .navbar-nav .nav-link {
+      color: #ff0000 !important;
+      text-shadow: 0 0 5px #ff0000;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    .navbar-brand:hover, .navbar-nav .nav-link:hover {
+      color: #ffcccc !important;
+      text-shadow: 0 0 10px #ff0000cc;
+    }
+
+    /* Container completely transparent with no shadow */
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(0,0,0,0.05);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: none;
+      color: #ffcccc;
+    }
+
+    /* Footer also transparent */
+    .footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(0,0,0,0.15);
+      border: none;
+      box-shadow: none;
+      color: #ffcccc;
+      padding: 10px;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+    }
+    .footer a {
+      color: #ff0000;
+      text-shadow: 0 0 5px #ff0000;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    .footer a:hover {
+      color: #ffcccc;
+      text-shadow: 0 0 10px #ff0000cc;
+      text-decoration: none;
+    }
+
+    @@media (max-width: 768px) {
+      .navbar-brand, .nav-link {
+        font-size: 1rem;
+      }
+      .container {
+        padding: 15px;
+      }
+      .footer {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KriptoFinal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+  <!-- Matrix Animation Canvas -->
+  <canvas id="matrix-canvas"></canvas>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - KriptoFinal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">🚩 KriptoFinal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <main role="main" class="pb-3">
+      @RenderBody()
+    </main>
+  </div>
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+
+  <!-- Matrix Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Set canvas to full window size
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      // Matrix characters - mix of Latin, Katakana, and symbols
+      const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%^&*";
+      
+      // Convert the string into an array of single characters
+      const charArray = chars.split('');
+      
+      const fontSize = 16;
+      const columns = Math.floor(canvas.width / fontSize);
+      
+      // Create an array of drops - one per column
+      const drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100; // Start at random positions above the screen
+      }
+      
+      // Drawing the characters
+      function draw() {
+        // Semi-transparent black overlay to create trail effect
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Red Matrix text (you can change to green if preferred)
+        ctx.fillStyle = '#ff0000';
+        ctx.font = `${fontSize}px monospace`;
+        
+        // Loop over drops
+        for (let i = 0; i < drops.length; i++) {
+          // Random character to print
+          const text = charArray[Math.floor(Math.random() * charArray.length)];
+          
+          // Draw the character
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          // Increment Y coordinate
+          drops[i]++;
+          
+          // Reset drop to top when it reaches bottom with some randomness
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          // Randomly reset some drops to create variation
+          if (Math.random() > 0.993) {
+            drops[i] = 0;
+          }
+        }
+      }
+      
+      // Handle window resize
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // Recalculate columns
+        const newColumns = Math.floor(canvas.width / fontSize);
+        
+        // Adjust drops array
+        if (newColumns > drops.length) {
+          // Add new columns
+          for (let i = drops.length; i < newColumns; i++) {
+            drops[i] = Math.random() * -100;
+          }
+        } else if (newColumns < drops.length) {
+          // Remove extra columns
+          drops.length = newColumns;
+        }
+      }
+      
+      window.addEventListener('resize', resize);
+      
+      // Start animation (about 30fps)
+      setInterval(draw, 33);
+      
+      // Initial draw
+      draw();
+    });
+  </script>
+
+  @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

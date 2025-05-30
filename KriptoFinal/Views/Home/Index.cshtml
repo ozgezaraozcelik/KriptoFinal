@@ -2,25 +2,23 @@
     ViewData["Title"] = "Ana Sayfa";
 }
 
-<!-- Başlangıç: Sayfa Başlığı -->
-<div class="container py-5">
+<div class="container py-5 bg-pirate-wood-neon">
     <header class="text-center mb-5">
-        <h1 class="display-3 fw-bold text-gradient">🔐 Kriptografi Araçları Paneli</h1>
-        <p class="fs-5 text-muted">RSA ve SHA256 işlemlerinizi güvenli ve kolay şekilde gerçekleştirin.</p>
+        <h1 class="display-3 fw-bold text-pirate-gold-neon pirate-shadow-neon">🏴‍☠️ Kriptografi Paneli</h1>
+        <p class="fs-5 text-pirate-tan-neon">RSA ve SHA256 işlemlerinizi güvenli ve kolay şekilde gerçekleştirin.</p>
     </header>
 
-    <!-- Başlangıç: Kart Grid Sistemi -->
     <div class="row g-4">
         <!-- RSA Anahtar Üret -->
         <div class="col-md-6">
-            <div class="card border-0 shadow-lg h-100 bg-gradient-primary text-white">
+            <div class="card pirate-card-neon h-100">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <h4 class="card-title mb-3">🔑 RSA Anahtar Üret</h4>
-                        <p class="card-text">Genel ve özel anahtar çifti üretin ve sisteminizde kullanın.</p>
+                        <h4 class="card-title pirate-gold-neon pirate-shadow-neon mb-3">🔑 RSA Anahtar Üret</h4>
+                        <p class="card-text pirate-tan-neon">Genel ve özel anahtar çifti üretin ve sisteminizde kullanın.</p>
                     </div>
                     <div class="text-end">
-                        <a asp-controller="GenerateKey" asp-action="Index" class="btn btn-outline-light">Git</a>
+                        <a asp-controller="GenerateKey" asp-action="Index" class="btn pirate-btn-neon">Git</a>
                     </div>
                 </div>
             </div>
@@ -28,14 +26,14 @@
 
         <!-- RSA Şifreleme -->
         <div class="col-md-6">
-            <div class="card border-0 shadow-lg h-100 bg-gradient-success text-white">
+            <div class="card pirate-card-neon h-100">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <h4 class="card-title mb-3">🛡️ RSA Şifreleme</h4>
-                        <p class="card-text">Verilerinizi güçlü RSA algoritmasıyla şifreleyin.</p>
+                        <h4 class="card-title pirate-gold-neon pirate-shadow-neon mb-3">🛡️ RSA Şifreleme</h4>
+                        <p class="card-text pirate-tan-neon">Verilerinizi güçlü RSA algoritmasıyla şifreleyin.</p>
                     </div>
                     <div class="text-end">
-                        <a asp-controller="Encrypt" asp-action="Index" class="btn btn-outline-light">Git</a>
+                        <a asp-controller="Encrypt" asp-action="Index" class="btn pirate-btn-neon">Git</a>
                     </div>
                 </div>
             </div>
@@ -43,14 +41,14 @@
 
         <!-- RSA Şifre Çözme -->
         <div class="col-md-6">
-            <div class="card border-0 shadow-lg h-100 bg-gradient-warning text-dark">
+            <div class="card pirate-card-neon h-100">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <h4 class="card-title mb-3">🔓 RSA Şifre Çöz</h4>
-                        <p class="card-text">RSA ile şifrelenmiş verileri güvenli şekilde çözün.</p>
+                        <h4 class="card-title pirate-gold-neon pirate-shadow-neon mb-3">🔓 RSA Şifre Çöz</h4>
+                        <p class="card-text pirate-tan-neon">RSA ile şifrelenmiş verileri güvenli şekilde çözün.</p>
                     </div>
                     <div class="text-end">
-                        <a asp-controller="Decrypt" asp-action="Index" class="btn btn-outline-dark">Git</a>
+                        <a asp-controller="Decrypt" asp-action="Index" class="btn pirate-btn-neon">Git</a>
                     </div>
                 </div>
             </div>
@@ -58,39 +56,109 @@
 
         <!-- SHA256 Hashleme -->
         <div class="col-md-6">
-            <div class="card border-0 shadow-lg h-100 bg-gradient-dark text-white">
+            <div class="card pirate-card-neon h-100">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <h4 class="card-title mb-3">📛 SHA256 Hashleme</h4>
-                        <p class="card-text">Metinleri SHA256 algoritmasıyla özetleyin.</p>
+                        <h4 class="card-title pirate-gold-neon pirate-shadow-neon mb-3">📛 SHA256 Hashleme</h4>
+                        <p class="card-text pirate-tan-neon">Metinleri SHA256 algoritmasıyla özetleyin.</p>
                     </div>
                     <div class="text-end">
-                        <a asp-controller="Sha256" asp-action="Index" class="btn btn-outline-light">Git</a>
+                        <a asp-controller="Sha256" asp-action="Index" class="btn pirate-btn-neon">Git</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Bitiş: Kart Grid Sistemi -->
 </div>
 
-<!-- Özel CSS tanımları (sayfanın altına veya ayrı CSS dosyasına konabilir) -->
 <style>
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #1d3557, #457b9d);
+    /* Transparent background to show Matrix effect */
+    .bg-pirate-wood-neon {
+        background: transparent;
+        min-height: 100vh;
+        padding-bottom: 50px;
+        position: relative;
+        z-index: 1; /* Ensure content is above Matrix canvas */
     }
-    .bg-gradient-success {
-        background: linear-gradient(135deg, #2a9d8f, #219653);
+
+    /* Neon-styled cards with red Matrix-inspired colors */
+    .pirate-card-neon {
+        background: rgba(0, 0, 0, 0.7); /* Semi-transparent black for readability */
+        border: 2px solid #ff0000; /* Red border */
+        border-radius: 10px;
+        box-shadow:
+            0 0 15px #ff0000,
+            0 0 30px #ff000066,
+            inset 0 0 8px #ff000033;
+        color: #ffcccc; /* Light red text */
+        font-family: 'Courier New', monospace; /* Matrix-like font */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .bg-gradient-warning {
-        background: linear-gradient(135deg, #ffca3a, #f4a261);
+    .pirate-card-neon:hover {
+        transform: translateY(-5px);
+        box-shadow:
+            0 0 25px #ff0000,
+            0 0 50px #ff000099,
+            inset 0 0 12px #ff000066;
     }
-    .bg-gradient-dark {
-        background: linear-gradient(135deg, #2c3e50, #1c1c1c);
+
+    /* Red neon headers */
+    .pirate-gold-neon {
+        color: #ff0000; /* Red */
+        text-shadow:
+            0 0 5px #ff0000,
+            0 0 10px #ff0000,
+            0 0 15px #ff0000cc;
+        font-family: 'Courier New', monospace;
+        user-select: none;
     }
-    .text-gradient {
-        background: linear-gradient(to right, #00c6ff, #0072ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+
+    /* Light red neon text for descriptions */
+    .pirate-tan-neon {
+        color: #ffcccc;
+        font-family: 'Courier New', monospace;
+        text-shadow: 0 0 4px #ff0000;
+    }
+
+    /* Red neon buttons */
+    .pirate-btn-neon {
+        background: transparent;
+        border: 2px solid #ff0000;
+        color: #ff0000;
+        font-family: 'Courier New', monospace;
+        font-weight: bold;
+        padding: 8px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        box-shadow:
+            0 0 5px #ff0000,
+            0 0 10px #ff000066;
+        transition: all 0.3s ease;
+    }
+    .pirate-btn-neon:hover {
+        background: #ff0000;
+        color: #000000;
+        box-shadow:
+            0 0 15px #ff0000,
+            0 0 25px #ff0000cc;
+        text-decoration: none;
+    }
+
+    /* Prevent text selection for headers */
+    h1, h4 {
+        user-select: none;
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+        .display-3 {
+            font-size: 2.5rem; /* Smaller header on mobile */
+        }
+        .pirate-card-neon {
+            margin-bottom: 20px;
+        }
     }
 </style>
