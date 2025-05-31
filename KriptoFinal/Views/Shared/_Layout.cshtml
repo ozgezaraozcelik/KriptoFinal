@@ -1,215 +1,158 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>@ViewData["Title"] - KriptoFinal</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - KriptoFinal</title>
 
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-  <link rel="stylesheet" href="~/KriptoFinal.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/KriptoFinal.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
 
-  <style>
-    html, body {
-      margin: 0; padding: 0; height: 100%;
-      font-family: 'Courier New', monospace;
-      overflow-x: hidden;
-      color: #ffcccc;
-      background: black;
-      position: relative;
-    }
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: red;
+            color: #ffcccc;
+            font-family: 'Orbitron', sans-serif;
+            overflow-x: hidden;
+        }
 
-    /* Matrix canvas background */
-    #matrix-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-    }
+        /* Matrix Canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: red;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    /* Navbar transparent with no shadow or border */
-    .navbar {
-      background: rgba(0, 0, 0, 0.15) !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
-    .navbar-brand, .navbar-nav .nav-link {
-      color: #ff0000 !important;
-      text-shadow: 0 0 5px #ff0000;
-      transition: color 0.3s, text-shadow 0.3s;
-    }
-    .navbar-brand:hover, .navbar-nav .nav-link:hover {
-      color: #ffcccc !important;
-      text-shadow: 0 0 10px #ff0000cc;
-    }
+        /* Navbar ve içerik görünür olmalı */
+        .navbar, .container, .footer {
+            position: relative;
+            z-index: 1;
+        }
 
-    /* Container completely transparent with no shadow */
-    .container {
-      position: relative;
-      z-index: 1;
-      background: rgba(0,0,0,0.05);
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: none;
-      color: #ffcccc;
-    }
+        .navbar {
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid #ff000055;
+        }
 
-    /* Footer also transparent */
-    .footer {
-      position: relative;
-      z-index: 1;
-      background: rgba(0,0,0,0.15);
-      border: none;
-      box-shadow: none;
-      color: #ffcccc;
-      padding: 10px;
-      text-align: center;
-      font-family: 'Courier New', monospace;
-    }
-    .footer a {
-      color: #ff0000;
-      text-shadow: 0 0 5px #ff0000;
-      transition: color 0.3s, text-shadow 0.3s;
-    }
-    .footer a:hover {
-      color: #ffcccc;
-      text-shadow: 0 0 10px #ff0000cc;
-      text-decoration: none;
-    }
+        .navbar-brand, .nav-link {
+            color: #ff0000 !important;
+            text-shadow: 0 0 8px #ff0000;
+            font-weight: bold;
+        }
 
-    @@media (max-width: 768px) {
-      .navbar-brand, .nav-link {
-        font-size: 1rem;
-      }
-      .container {
-        padding: 15px;
-      }
-      .footer {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+            .navbar-brand:hover, .nav-link:hover {
+                color: white !important;
+                text-shadow: 0 0 12px #ff0000;
+            }
+
+        .container {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 0 20px #ff000033;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #ffcccc;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid #ff000022;
+            margin-top: 30px;
+        }
+
+            .footer a {
+                color: #ff0000;
+                text-shadow: 0 0 5px #ff0000;
+            }
+
+                .footer a:hover {
+                    color: #ffffff;
+                    text-shadow: 0 0 10px #ff0000;
+                }
+    </style>
 </head>
 <body>
-  <!-- Matrix Animation Canvas -->
-  <canvas id="matrix-canvas"></canvas>
 
-  <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
-      <div class="container-fluid">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">🚩 KriptoFinal</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <!-- Matrix Efekti -->
+    <canvas id="matrix-canvas"></canvas>
 
-        </div>
-      </div>
-    </nav>
-  </header>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm px-4">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">💀 KriptoFinal</a>
+        </nav>
+    </header>
 
-  <div class="container">
-    <main role="main" class="pb-3">
-      @RenderBody()
-    </main>
-  </div>
+    <!-- Sayfa içeriği -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-  <!-- Matrix Animation Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const canvas = document.getElementById('matrix-canvas');
-      const ctx = canvas.getContext('2d');
-      
-      // Set canvas to full window size
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      // Matrix characters - mix of Latin, Katakana, and symbols
-      const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%^&*";
-      
-      // Convert the string into an array of single characters
-      const charArray = chars.split('');
-      
-      const fontSize = 16;
-      const columns = Math.floor(canvas.width / fontSize);
-      
-      // Create an array of drops - one per column
-      const drops = [];
-      for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100; // Start at random positions above the screen
-      }
-      
-      // Drawing the characters
-      function draw() {
-        // Semi-transparent black overlay to create trail effect
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Red Matrix text (you can change to green if preferred)
-        ctx.fillStyle = '#ff0000';
-        ctx.font = `${fontSize}px monospace`;
-        
-        // Loop over drops
-        for (let i = 0; i < drops.length; i++) {
-          // Random character to print
-          const text = charArray[Math.floor(Math.random() * charArray.length)];
-          
-          // Draw the character
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          
-          // Increment Y coordinate
-          drops[i]++;
-          
-          // Reset drop to top when it reaches bottom with some randomness
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          
-          // Randomly reset some drops to create variation
-          if (Math.random() > 0.993) {
-            drops[i] = 0;
-          }
-        }
-      }
-      
-      // Handle window resize
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        // Recalculate columns
-        const newColumns = Math.floor(canvas.width / fontSize);
-        
-        // Adjust drops array
-        if (newColumns > drops.length) {
-          // Add new columns
-          for (let i = drops.length; i < newColumns; i++) {
-            drops[i] = Math.random() * -100;
-          }
-        } else if (newColumns < drops.length) {
-          // Remove extra columns
-          drops.length = newColumns;
-        }
-      }
-      
-      window.addEventListener('resize', resize);
-      
-      // Start animation (about 30fps)
-      setInterval(draw, 33);
-      
-      // Initial draw
-      draw();
-    });
-  </script>
+    <!-- Matrix Animasyon -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
 
-  @await RenderSectionAsync("Scripts", required: false)
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const chars = "01アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const charArray = chars.split('');
+            const fontSize = 20;
+            const columns = Math.floor(canvas.width / fontSize);
+            const drops = Array(columns).fill(1);
+
+            function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#ff0000';
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = charArray[Math.floor(Math.random() * charArray.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+
+                    drops[i]++;
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            draw();
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
